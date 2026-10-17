@@ -1,0 +1,99 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Karla", sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-rose: var(--rose);
+  --color-olive: var(--olive);
+  --color-whatsapp: var(--whatsapp);
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.97 0.018 80);
+  --foreground: oklch(0.22 0.02 40);
+  --card: oklch(0.99 0.01 80);
+  --card-foreground: oklch(0.22 0.02 40);
+  --popover: oklch(0.99 0.01 80);
+  --popover-foreground: oklch(0.22 0.02 40);
+  --primary: oklch(0.55 0.15 35);
+  --primary-foreground: oklch(0.98 0.01 80);
+  --secondary: oklch(0.92 0.03 80);
+  --secondary-foreground: oklch(0.22 0.02 40);
+  --muted: oklch(0.93 0.02 80);
+  --muted-foreground: oklch(0.48 0.03 50);
+  --accent: oklch(0.42 0.07 140);
+  --accent-foreground: oklch(0.98 0.01 80);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.86 0.03 70);
+  --input: oklch(0.86 0.03 70);
+  --ring: oklch(0.55 0.15 35);
+  --gold: oklch(0.78 0.13 85);
+  --rose: oklch(0.75 0.11 10);
+  --olive: oklch(0.42 0.07 140);
+  --whatsapp: oklch(0.68 0.17 150);
+  --ink: oklch(0.16 0.015 40);
+  --cream: oklch(0.97 0.018 80);
+  --gradient-hero: linear-gradient(180deg, oklch(0.16 0.015 40 / 0.55) 0%, oklch(0.16 0.015 40 / 0.35) 45%, oklch(0.16 0.015 40 / 0.9) 100%);
+  --shadow-glow: 0 20px 50px -15px oklch(0.55 0.15 35 / 0.5);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body { background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  h1, h2, h3, .font-display { font-family: var(--font-display); }
+}
+
+@utility bg-hero-overlay { background: var(--gradient-hero); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility checker {
+  background-image: conic-gradient(var(--ink) 25%, var(--cream) 0 50%, var(--ink) 0 75%, var(--cream) 0);
+  background-size: 28px 28px;
+}
+
+@keyframes kenburns { from { transform: scale(1.05); } to { transform: scale(1.18) translateY(-2%); } }
+@keyframes rise { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes twinkle { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+@utility animate-kenburns { animation: kenburns 18s ease-in-out infinite alternate; }
+@utility animate-rise { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+@utility animate-marquee { animation: marquee 28s linear infinite; }
+@utility animate-twinkle { animation: twinkle 2.4s ease-in-out infinite; }
+@utility animate-floaty { animation: floaty 3s ease-in-out infinite; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
